@@ -57,4 +57,29 @@ public class PokerGameIT{
         String result = game.printGameResult();
         Assert.assertEquals("Black win. - with four of a kind: 4 cards of 3",result);
     }
+
+    @Test
+    public void BlackWinWithFullHouse() throws Exception {
+        Player p1,p2;
+        List<Card> p1Cards = new ArrayList<>();
+        p1Cards.add(new Card(SuitEnum.HEART,"7"));
+        p1Cards.add(new Card(SuitEnum.SPADE,"7"));
+        p1Cards.add(new Card(SuitEnum.DIAMOND,"7"));
+        p1Cards.add(new Card(SuitEnum.CLUB,"3"));
+        p1Cards.add(new Card(SuitEnum.HEART,"3"));
+        p1 = new Player("Black",p1Cards);
+
+
+        List<Card> p2Cards = new ArrayList<>();
+        p2Cards.add(new Card(SuitEnum.HEART,"2"));
+        p2Cards.add(new Card(SuitEnum.SPADE,"2"));
+        p2Cards.add(new Card(SuitEnum.DIAMOND,"2"));
+        p2Cards.add(new Card(SuitEnum.CLUB,"6"));
+        p2Cards.add(new Card(SuitEnum.SPADE,"6"));
+        p2 = new Player("White",p2Cards);
+
+        PokerGame game = new PokerGame(p1,p2);
+        String result = game.printGameResult();
+        Assert.assertEquals("Black win. - with full house: 7 over 3",result);
+    }
 }

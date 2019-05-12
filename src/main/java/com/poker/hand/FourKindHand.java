@@ -25,8 +25,7 @@ public class FourKindHand extends AbstractHand{
 
     private int findFourSameCardValue(Player p){
         LinkedHashMap<String, List<Card>> result = HandUtil.groupByValueAndSortByQuantityAndValue(p.getCards());
-        Iterator<Map.Entry<String,List<Card>>> it = result.entrySet().iterator();
-        Map.Entry<String,List<Card>> entry = it.next();
-        return entry.getValue().get(0).getIntValue();
+        List<Card> firstCardList = HandUtil.findCardListInLinkedHashMapByOrder(result,0);
+        return firstCardList.get(0).getIntValue();
     }
 }

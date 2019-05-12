@@ -3,6 +3,7 @@ package com.poker.hand;
 import com.poker.Card;
 import com.poker.Player;
 import com.poker.hand.analyzer.FourKindHandAnalyer;
+import com.poker.hand.analyzer.FullHouseHandAnalyzer;
 import com.poker.hand.analyzer.IHandAnalyzer;
 import com.poker.hand.analyzer.StraightFlushHandAnalyzer;
 
@@ -25,6 +26,7 @@ public class HandUtil {
     public static List<IHandAnalyzer> getHandAnalyzers(){
         handAnalyzers.add(new StraightFlushHandAnalyzer());
         handAnalyzers.add(new FourKindHandAnalyer());
+        handAnalyzers.add(new FullHouseHandAnalyzer());
         return handAnalyzers;
     }
 
@@ -60,6 +62,17 @@ public class HandUtil {
         } else {
             return e2.getValue().size() - e1.getValue().size();
         }
+    }
+
+    public static List<Card> findCardListInLinkedHashMapByOrder(LinkedHashMap<String, List<Card>> map,int order){
+        int i = -1;
+        Iterator<Map.Entry<String,List<Card>>> it = map.entrySet().iterator();
+        Map.Entry<String,List<Card>> entry = null;
+        while(it.hasNext()&&i<order){
+            entry = it.next();
+            i++;
+        }
+        return entry!=null?entry.getValue():null;
     }
 
 }

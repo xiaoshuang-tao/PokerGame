@@ -58,6 +58,28 @@ public class HandUtilTest {
         Map.Entry<String,List<Card>> thirdEntry = it.next();
         assertEquals(1,thirdEntry.getValue().size());
         assertEquals("3",thirdEntry.getKey());
-
     }
+
+    @Test
+    public void findCardListInLinkedHashMapByOrderReturnFirstEntryValue(){
+        LinkedHashMap<String,List<Card>> map = new LinkedHashMap<>();
+        List<Card> list1 = new ArrayList<>();
+        List<Card> list2 = new ArrayList<>();
+        Card card2 = new Card(SuitEnum.SPADE, "2");
+        Card card3 = new Card(SuitEnum.HEART, "2");
+        Card card4 = new Card(SuitEnum.CLUB, "2");
+        Card card5 = new Card(SuitEnum.SPADE, "4");
+        Card card6 = new Card(SuitEnum.HEART, "4");
+        list1.add(card2);
+        list1.add(card3);
+        list1.add(card4);
+        list2.add(card5);
+        list2.add(card6);
+        map.put("2",list1);
+        map.put("4",list2);
+        List<Card> result = HandUtil.findCardListInLinkedHashMapByOrder(map,0);
+        assertEquals(3,result.size());
+        assertEquals("2",result.get(0).getValue());
+    }
+
 }

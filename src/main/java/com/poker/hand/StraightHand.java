@@ -1,11 +1,10 @@
 package com.poker.hand;
 
-import com.poker.Card;
 import com.poker.Player;
 import com.poker.enums.PokerHandTypeEnum;
 
-public class StraightFlushHand extends AbstractHand {
-    private PokerHandTypeEnum type = PokerHandTypeEnum.STRAIGHT_FLUSH;
+public class StraightHand extends AbstractHand{
+    private PokerHandTypeEnum type = PokerHandTypeEnum.STRAIGHT;
 
     @Override
     public PokerHandTypeEnum getType() {
@@ -17,11 +16,8 @@ public class StraightFlushHand extends AbstractHand {
         return getContent();
     }
 
-
     @Override
     public int compare(Player o1, Player o2) {
         return compareHighestCard(o1,o2);
     }
-
-
 }

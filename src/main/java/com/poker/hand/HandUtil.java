@@ -2,12 +2,11 @@ package com.poker.hand;
 
 import com.poker.Card;
 import com.poker.Player;
+import com.poker.hand.analyzer.FourKindHandAnalyer;
 import com.poker.hand.analyzer.IHandAnalyzer;
 import com.poker.hand.analyzer.StraightFlushHandAnalyzer;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class HandUtil {
@@ -25,6 +24,7 @@ public class HandUtil {
 
     public static List<IHandAnalyzer> getHandAnalyzers(){
         handAnalyzers.add(new StraightFlushHandAnalyzer());
+        handAnalyzers.add(new FourKindHandAnalyer());
         return handAnalyzers;
     }
 
@@ -41,4 +41,25 @@ public class HandUtil {
     public static String getHigherCardMessage(Player winner,Player player1, Player player2) {
         return winner.getHand().getContent();
     }
+
+    /**
+     * Retourner une LinkedHashMap
+     * Grouper les cartes par leurs valeurs et lister par nombre de cartes d'abord et ensuite leurs valeurs dans l'ordre décroissant
+     *
+     * @param cards une liste de cards
+     * @return LinkedHashMap<String, List < Card>>
+     */
+    public static LinkedHashMap<String, List<Card>> groupByValueAndSortByQuantityAndValue(List<Card> cards) {
+        Map<String, List<Card>> map = cards.stream().collect(Collectors.groupingBy(Card::getValue));
+        return map.entrySet().stream().sorted(HandUtil::compareBySizeThenValue).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    }
+
+    private static int compareBySizeThenValue(Map.Entry<String, List<Card>> e1, Map.Entry<String, List<Card>> e2) {
+        if (e1.getValue().size() == e2.getValue().size()) {
+            return e2.getValue().get(0).getIntValue() - e1.getValue().get(0).getIntValue();
+        } else {
+            return e2.getValue().size() - e1.getValue().size();
+        }
+    }
+
 }

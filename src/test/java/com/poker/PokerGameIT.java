@@ -157,4 +157,28 @@ public class PokerGameIT{
         String result = game.printGameResult();
         Assert.assertEquals("Black win. - with three of a kind: three 7 cards",result);
     }
+    @Test
+    public void BlackWinWithHighCard() throws Exception {
+        Player p1,p2;
+        List<Card> p1Cards = new ArrayList<>();
+        p1Cards.add(new Card(SuitEnum.HEART,"7"));
+        p1Cards.add(new Card(SuitEnum.HEART,"8"));
+        p1Cards.add(new Card(SuitEnum.DIAMOND,"T"));
+        p1Cards.add(new Card(SuitEnum.HEART,"A"));
+        p1Cards.add(new Card(SuitEnum.HEART,"Q"));
+        p1 = new Player("Black",p1Cards);
+
+
+        List<Card> p2Cards = new ArrayList<>();
+        p2Cards.add(new Card(SuitEnum.SPADE,"8"));
+        p2Cards.add(new Card(SuitEnum.SPADE,"A"));
+        p2Cards.add(new Card(SuitEnum.SPADE,"Q"));
+        p2Cards.add(new Card(SuitEnum.SPADE,"9"));
+        p2Cards.add(new Card(SuitEnum.CLUB,"6"));
+        p2 = new Player("White",p2Cards);
+
+        PokerGame game = new PokerGame(p1,p2);
+        String result = game.printGameResult();
+        Assert.assertEquals("Black win. - with high card: higher card T",result);
+    }
 }

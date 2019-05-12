@@ -8,5 +8,6 @@ public interface IHand extends Comparator<Player> {
     PokerHandTypeEnum getType();
     String getContent();
     void setContent(String content);
+    String getRankingMessage(Player p1,Player p2);
 
 }

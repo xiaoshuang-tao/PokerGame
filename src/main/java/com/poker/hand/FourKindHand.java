@@ -4,16 +4,19 @@ import com.poker.Card;
 import com.poker.Player;
 import com.poker.enums.PokerHandTypeEnum;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FourKindHand extends AbstractHand{
     private PokerHandTypeEnum type = PokerHandTypeEnum.FOUR_KIND;
     @Override
     public PokerHandTypeEnum getType() {
         return type;
+    }
+
+    @Override
+    public String getRankingMessage(Player p1, Player p2) {
+        return getContent();
     }
 
     @Override

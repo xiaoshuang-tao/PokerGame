@@ -11,6 +11,11 @@ public class HighCardHand extends AbstractHand {
     }
 
     @Override
+    public String getRankingMessage(Player p1, Player p2) {
+        return null;
+    }
+
+    @Override
     public int compare(Player o1, Player o2) {
         return 0;
     }

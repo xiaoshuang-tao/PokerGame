@@ -2,10 +2,7 @@ package com.poker.hand;
 
 import com.poker.Card;
 import com.poker.Player;
-import com.poker.hand.analyzer.FourKindHandAnalyer;
-import com.poker.hand.analyzer.FullHouseHandAnalyzer;
-import com.poker.hand.analyzer.IHandAnalyzer;
-import com.poker.hand.analyzer.StraightFlushHandAnalyzer;
+import com.poker.hand.analyzer.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,6 +24,7 @@ public class HandUtil {
         handAnalyzers.add(new StraightFlushHandAnalyzer());
         handAnalyzers.add(new FourKindHandAnalyer());
         handAnalyzers.add(new FullHouseHandAnalyzer());
+        handAnalyzers.add(new FlushHandAnalyzer());
         return handAnalyzers;
     }
 
@@ -38,10 +36,6 @@ public class HandUtil {
             }
         }
         return null;
-    }
-
-    public static String getHigherCardMessage(Player winner,Player player1, Player player2) {
-        return winner.getHand().getContent();
     }
 
     /**

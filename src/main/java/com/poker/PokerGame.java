@@ -44,8 +44,9 @@ public class PokerGame {
             return player2.getName()+" win. - with "+p2Hand.getType().getName()+": "+p2Hand.getContent();
         }else{
             Player winner = this.getWinner();
-            String hignerCardMessage = HandUtil.getHigherCardMessage(winner,player1,player2);
-            return winner.getName()+" win. - with "+winner.getHand().getType().getName()+": "+hignerCardMessage;
+            String higherCardMessage = winner.getHand().getRankingMessage(player1,player2);
+            return winner.getName()+" win. - with "+winner.getHand().getType().getName()+": "+higherCardMessage;
         }
     }
+
 }

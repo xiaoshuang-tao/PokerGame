@@ -2,6 +2,8 @@ package com.poker;
 
 import com.poker.enums.SuitEnum;
 
+
+
 public class Card {
     private SuitEnum suit;
     private String value;
@@ -18,6 +20,16 @@ public class Card {
     public String getValue() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return suit == card.suit &&
+                value.equals(card.value);
+    }
+
 
     public int getIntValue() throws IllegalArgumentException {
         switch (value) {

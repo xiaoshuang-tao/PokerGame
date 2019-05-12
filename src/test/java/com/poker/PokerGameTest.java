@@ -1,5 +1,7 @@
 package com.poker;
 
+import com.poker.hand.HighCardHand;
+import com.poker.hand.StraightFlushHand;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,18 +25,38 @@ public class PokerGameTest {
     }
 
     @Test
-    public void play1Wins() throws Exception {
-        when(p1.compareTo(p2)).thenReturn(1);
-
+    public void printGameResultReturnPlayerOneWinMessage() throws Exception {
+        when(p1.getHand()).thenReturn(new StraightFlushHand());
+        when(p2.getHand()).thenReturn(new HighCardHand());
+        when(p1.getName()).thenReturn("player1");
         String result = game.printGameResult();
-        Assert.assertFalse("Tie.".equals(result));
+        Assert.assertTrue(result.contains("player1"));
     }
 
     @Test
-    public void tie() throws Exception {
-        when(p1.compareTo(p2)).thenReturn(0);
-
+    public void printGameResultReturnPlayerTwoWinMessage() throws Exception {
+        when(p1.getHand()).thenReturn(new HighCardHand());
+        when(p2.getHand()).thenReturn(new StraightFlushHand());
+        when(p2.getName()).thenReturn("player2");
         String result = game.printGameResult();
-        Assert.assertTrue("Tie.".equals(result));
+        Assert.assertTrue(result.contains("player2"));
     }
+
+    @Test
+    public void printGameResultForSameHandTypeReturnPlayerOneWinMessage() throws Exception {
+        when(p1.getHand()).thenReturn(new StraightFlushHand());
+        when(p2.getHand()).thenReturn(new StraightFlushHand());
+        when(p1.compareTo(p2)).thenReturn(-1);
+        when(p2.getName()).thenReturn("player2");
+        String result = game.printGameResult();
+        Assert.assertTrue(result.contains("player2"));
+    }
+
+    @Test
+    public void printGameResultForSameHandTypeReturnTieMessage() throws Exception {
+        when(p1.compareTo(p2)).thenReturn(0);
+        String result = game.printGameResult();
+        Assert.assertTrue(result.contains("Tie"));
+    }
+
 }

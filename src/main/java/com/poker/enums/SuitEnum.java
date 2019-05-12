@@ -11,12 +11,4 @@ public enum SuitEnum {
     SuitEnum(String name) {
         this.name = name;
     }
-
-    public static SuitEnum getEnumByName(String name) {
-        for (SuitEnum e : SuitEnum.values()) {
-            if (name.equals(e.name)) return e;
-        }
-        return null;
-    }
-
 }

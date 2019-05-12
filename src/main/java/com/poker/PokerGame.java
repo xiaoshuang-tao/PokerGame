@@ -1,5 +1,8 @@
 package com.poker;
 
+import com.poker.hand.HandUtil;
+import com.poker.hand.IHand;
+
 public class PokerGame {
 
     private Player player1;
@@ -14,7 +17,7 @@ public class PokerGame {
         }
     }
 
-    private Player getWinner() throws Exception {
+    private Player getWinner(){
         switch (player1.compareTo(player2)) {
             case -1:
                 return player2;
@@ -27,8 +30,22 @@ public class PokerGame {
 
     public String printGameResult() throws Exception {
         Player winner = getWinner();
-        String result = winner == null ? "Tie." : winner.printWinningMessage();
+        String result = winner == null ? "Tie." : getWinningMessage();
         System.out.println(result);
         return result;
+    }
+
+    private String getWinningMessage() throws Exception {
+        IHand p1Hand = player1.getHand();
+        IHand p2Hand = player2.getHand();
+        if(p1Hand.getType().getRank()>p2Hand.getType().getRank()){
+            return player1.getName()+" win. - with "+p1Hand.getType().getName()+": "+p1Hand.getContent();
+        }else if(p1Hand.getType().getRank()<p2Hand.getType().getRank()){
+            return player2.getName()+" win. - with "+p2Hand.getType().getName()+": "+p2Hand.getContent();
+        }else{
+            Player winner = this.getWinner();
+            String hignerCardMessage = HandUtil.getHigherCardMessage(winner,player1,player2);
+            return winner.getName()+" win. - with "+winner.getHand().getType().getName()+": "+hignerCardMessage;
+        }
     }
 }

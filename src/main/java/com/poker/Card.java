@@ -53,7 +53,7 @@ public class Card {
             case "A":
                 return 14;
             default:
-                throw new IllegalArgumentException("Illegal card value");
+                throw new IllegalArgumentException("Illegal card value: \""+value+"\"");
         }
     }
 }

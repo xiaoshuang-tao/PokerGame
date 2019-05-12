@@ -16,20 +16,7 @@ public class FullHouseHand extends AbstractHand {
     }
 
     @Override
-    public String getRankingMessage(Player p1, Player p2) {
-        return getContent();
-    }
-
-    @Override
     public int compare(Player o1, Player o2) {
-        int player1FourCardValue = findThreeSameCardValue(o1);
-        int player2FourCardValue = findThreeSameCardValue(o2);
-        return Integer.compare(player1FourCardValue,player2FourCardValue);
-    }
-
-    private int findThreeSameCardValue(Player p){
-        LinkedHashMap<String, List<Card>> result = HandUtil.groupByValueAndSortByQuantityAndValue(p.getCards());
-        List<Card> firstCardList = HandUtil.findCardListInLinkedHashMapByOrder(result,0);
-        return firstCardList.get(0).getIntValue();
+        return compareByMostCardValue(o1,o2);
     }
 }

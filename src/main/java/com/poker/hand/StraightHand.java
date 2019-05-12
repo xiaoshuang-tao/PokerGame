@@ -12,12 +12,7 @@ public class StraightHand extends AbstractHand{
     }
 
     @Override
-    public String getRankingMessage(Player p1, Player p2) {
-        return getContent();
-    }
-
-    @Override
     public int compare(Player o1, Player o2) {
-        return compareHighestCard(o1,o2);
+        return compareByHighestCardValue(o1,o2);
     }
 }

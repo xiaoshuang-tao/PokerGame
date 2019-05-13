@@ -2,9 +2,7 @@ package com.poker.hand.analyzer;
 
 import com.poker.Card;
 import com.poker.Player;
-import com.poker.enums.SuitEnum;
-import com.poker.hand.IHand;
-import com.poker.hand.StraightFlushHand;
+import com.poker.SuitEnum;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

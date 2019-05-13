@@ -2,8 +2,7 @@ package com.poker.hand;
 
 import com.poker.Card;
 import com.poker.Player;
-import com.poker.enums.PokerHandTypeEnum;
-import com.poker.enums.SuitEnum;
+import com.poker.SuitEnum;
 import org.junit.Test;
 
 import java.util.ArrayList;

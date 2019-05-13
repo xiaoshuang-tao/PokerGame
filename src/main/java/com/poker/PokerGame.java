@@ -1,6 +1,5 @@
 package com.poker;
 
-import com.poker.hand.HandUtil;
 import com.poker.hand.IHand;
 
 public class PokerGame {
@@ -28,14 +27,14 @@ public class PokerGame {
         }
     }
 
-    public String printGameResult() throws Exception {
+    public String printGameResult(){
         Player winner = getWinner();
         String result = winner == null ? "Tie." : getWinningMessage();
         System.out.println(result);
         return result;
     }
 
-    private String getWinningMessage() throws Exception {
+    private String getWinningMessage(){
         IHand p1Hand = player1.getHand();
         IHand p2Hand = player2.getHand();
         if(p1Hand.getType().getRank()>p2Hand.getType().getRank()){

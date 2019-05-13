@@ -1,4 +1,4 @@
-package com.poker.enums;
+package com.poker.hand;
 
 public enum PokerHandTypeEnum {
 	STRAIGHT_FLUSH(9,"straight flush"),

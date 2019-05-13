@@ -1,4 +1,4 @@
-package com.poker.enums;
+package com.poker;
 
 public enum SuitEnum {
     CLUB("C"), DIAMOND("D"), HEART("H"), SPADE("S");

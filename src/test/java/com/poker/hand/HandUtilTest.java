@@ -1,7 +1,7 @@
 package com.poker.hand;
 
 import com.poker.Card;
-import com.poker.enums.SuitEnum;
+import com.poker.SuitEnum;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,7 +1,6 @@
 package com.poker.hand;
 
 import com.poker.Player;
-import com.poker.enums.PokerHandTypeEnum;
 
 public class ThreeKindHand extends AbstractHand{
     private PokerHandTypeEnum type = PokerHandTypeEnum.THREE_KIND;

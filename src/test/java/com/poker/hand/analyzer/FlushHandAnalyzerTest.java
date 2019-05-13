@@ -2,10 +2,9 @@ package com.poker.hand.analyzer;
 
 import com.poker.Card;
 import com.poker.Player;
-import com.poker.enums.SuitEnum;
+import com.poker.SuitEnum;
 import com.poker.hand.FlushHand;
 import com.poker.hand.IHand;
-import com.poker.hand.StraightFlushHand;
 import org.junit.Test;
 
 import java.util.ArrayList;

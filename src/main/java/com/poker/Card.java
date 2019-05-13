@@ -1,8 +1,5 @@
 package com.poker;
 
-import com.poker.enums.SuitEnum;
-
-
 
 public class Card {
     private SuitEnum suit;

@@ -28,6 +28,7 @@ public class HandUtil {
         handAnalyzers.add(new StraightHandAnalyzer());
         handAnalyzers.add(new ThreeKindHandAnalyzer());
         handAnalyzers.add(new TwoPairsHandAnalyzer());
+        handAnalyzers.add(new PairHandAnalyzer());
         handAnalyzers.add(new HighCardHandAnalyzer());
         return handAnalyzers;
     }

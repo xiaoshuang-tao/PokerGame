@@ -73,12 +73,12 @@ public abstract class AbstractHand implements IHand {
             entry2 = it2.next();
             if(entry1.getValue().get(0).getIntValue()>entry2.getValue().get(0).getIntValue()){
                 return entry1.getValue().size()==2
-                        ? " pair of "+entry1.getValue().get(0).getValue()
-                        : " higher card "+entry1.getValue().get(0).getValue();
+                        ? "pair of "+entry1.getValue().get(0).getValue()
+                        : "higher card "+entry1.getValue().get(0).getValue();
             }else if(entry1.getValue().get(0).getIntValue()<entry2.getValue().get(0).getIntValue()){
                 return entry2.getValue().size()==2
-                        ? " pair of "+entry2.getValue().get(0).getValue()
-                        : " higher card "+entry2.getValue().get(0).getValue();
+                        ? "pair of "+entry2.getValue().get(0).getValue()
+                        : "higher card "+entry2.getValue().get(0).getValue();
             }
         }
         return "";

@@ -3,8 +3,10 @@ package com.poker.hand;
 import com.poker.Card;
 import com.poker.Player;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class AbstractHand implements IHand {
     private String content;
@@ -17,13 +19,14 @@ public abstract class AbstractHand implements IHand {
         this.content = content;
     }
 
-    protected Card findHighest(Player p) {
+    private Card findHighest(Player p) {
         return HandUtil.sortDesc(p.getCards()).get(0);
     }
 
     protected int compareByHighestCardValue(Player o1,Player o2){
         return Integer.compare(findHighest(o1).getIntValue(), findHighest(o2).getIntValue());
     }
+    @Override
     public String getRankingMessage(Player p1, Player p2) {
         return getContent();
     }
@@ -60,5 +63,43 @@ public abstract class AbstractHand implements IHand {
             }
         }
         return null;
+    }
+    protected String getRankingMessageByMapComparison(Player o1,Player o2){
+        Iterator<Map.Entry<String,List<Card>>> it1 = getSortedMapIterator(o1);
+        Iterator<Map.Entry<String,List<Card>>> it2 = getSortedMapIterator(o2);
+        Map.Entry<String,List<Card>> entry1,entry2;
+        while(it1.hasNext()&&it2.hasNext()){
+            entry1 = it1.next();
+            entry2 = it2.next();
+            if(entry1.getValue().get(0).getIntValue()>entry2.getValue().get(0).getIntValue()){
+                return entry1.getValue().size()==2
+                        ? " pair of "+entry1.getValue().get(0).getValue()
+                        : " higher card "+entry1.getValue().get(0).getValue();
+            }else if(entry1.getValue().get(0).getIntValue()<entry2.getValue().get(0).getIntValue()){
+                return entry2.getValue().size()==2
+                        ? " pair of "+entry2.getValue().get(0).getValue()
+                        : " higher card "+entry2.getValue().get(0).getValue();
+            }
+        }
+        return "";
+    }
+    protected int compareBySortedMap(Player o1,Player o2){
+        Iterator<Map.Entry<String,List<Card>>> it1 = getSortedMapIterator(o1);
+        Iterator<Map.Entry<String,List<Card>>> it2 = getSortedMapIterator(o2);
+        Map.Entry<String,List<Card>> entry1,entry2;
+        while(it1.hasNext()&&it2.hasNext()){
+            entry1 = it1.next();
+            entry2 = it2.next();
+            if(entry1.getValue().get(0).getIntValue()>entry2.getValue().get(0).getIntValue()){
+                return 1;
+            }else if(entry1.getValue().get(0).getIntValue()<entry2.getValue().get(0).getIntValue()){
+                return -1;
+            }
+        }
+        return 0;
+    }
+    private Iterator<Map.Entry<String,List<Card>>> getSortedMapIterator(Player p){
+        LinkedHashMap<String,List<Card>> sortedMap = HandUtil.groupByValueAndSortByQuantityAndValue(p.getCards());
+        return sortedMap.entrySet().iterator();
     }
 }

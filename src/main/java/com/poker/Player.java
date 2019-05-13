@@ -47,4 +47,12 @@ public class Player implements Comparable<Player>{
             return this.getHand().compare(this,o);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", cards=" + cards +
+                '}';
+    }
 }

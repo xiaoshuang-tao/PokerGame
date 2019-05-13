@@ -53,4 +53,9 @@ public class Card {
                 throw new IllegalArgumentException("Illegal card value: \""+value+"\"");
         }
     }
+
+    @Override
+    public String toString() {
+        return value+suit.getName();
+    }
 }

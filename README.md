@@ -1,7 +1,7 @@
-#Poker Hands Kata
+# Poker Hands Kata
 The rules of this kata can be found <a href="http://codingdojo.org/kata/PokerHands/">here</a>.
 
-##User manuel
+## User manuel
 
 ### Requirement
 JDK8 is required for running this application.
